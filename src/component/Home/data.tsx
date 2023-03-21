@@ -5,7 +5,15 @@ const value = (x: number): string => {
   }).format(x)
 }
 
-export const data = [
+export type DataContent = {
+  id: number
+  title: string
+  content: string
+}
+
+export type DataType = DataContent[]
+
+export const data: DataType = [
   {
     id: 1,
     title: 'What is tunedIn?',

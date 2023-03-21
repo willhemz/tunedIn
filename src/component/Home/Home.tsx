@@ -5,7 +5,6 @@ import Question from './Question'
 
 const Home = () => {
   const [caption, setCaption] = useState<boolean>(false)
-
   const [email, setEmail] = useState<string>('')
   const img: string = new URL('../../assets/theater.jpg', import.meta.url).href
   const tv: string = new URL('../../assets/tv.jpg', import.meta.url).href
@@ -60,8 +59,12 @@ const Home = () => {
       <img className='homeBg' src={img} alt='' />
       <div className='homeBg--fader'></div>
       <header className='homeHeader'>
-        <button className='text-white font-extrabold text-4xl'>tunedIn</button>
-        <button onClick={() => navigate('login')} className='btn'>
+        <button
+          onClick={(): void => navigate('/')}
+          className='text-white font-extrabold text-4xl'>
+          tunedIn
+        </button>
+        <button onClick={(): void => navigate('login')} className='btn'>
           Sign In
         </button>
       </header>
