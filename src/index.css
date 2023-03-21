@@ -14,7 +14,10 @@
 
 @layer components {
   .btn {
-    @apply w-9 h-8;
+    @apply bg-white rounded-lg px-4 py-1 text-[#b38f00] font-semibold;
+  }
+  input:not(.homeMail) {
+    @apply bg-black bg-opacity-50 rounded-lg py-1 px-2 border border-white text-white;
   }
 
   /* Error */
@@ -36,5 +39,32 @@
 
   .errorText {
     @apply text-white w-full text-center;
+  }
+
+  /* Home */
+  .homeWrapper {
+    @apply w-full h-screen relative overflow-auto py-3 px-8;
+  }
+
+  .homeBg {
+    @apply w-full h-full absolute top-0 left-0 -z-20;
+  }
+  .homeBg--fader {
+    @apply bg-black absolute top-0 left-0 -z-10 w-full h-full bg-opacity-50;
+  }
+
+  .homeHeader {
+    @apply w-full flex justify-between items-center h-11;
+  }
+
+  .homeFooter {
+    @apply w-full h-[calc(100%-44px)] grid place-items-center place-content-center gap-5 text-white;
+  }
+
+  .mailField {
+    @apply bg-black bg-opacity-50 rounded-lg py-1 px-2 border border-white text-white w-3/5 h-14 grid place-items-center;
+  }
+  .homeMail {
+    @apply bg-transparent border-none w-full;
   }
 }

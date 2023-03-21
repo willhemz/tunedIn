@@ -1,10 +1,15 @@
 import { createBrowserRouter as browse } from 'react-router-dom'
-import { ErrorPage } from './component'
+import { ErrorPage, Home, Login } from './component'
 
 const App = browse([
   {
     path: '/',
-    element: '',
+    element: <Home />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/login',
+    element: <Login />,
     errorElement: <ErrorPage />,
   },
 ])
