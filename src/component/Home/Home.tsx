@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, ChangeEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { data } from './data'
 import Question from './Question'
@@ -46,10 +46,16 @@ const Home = () => {
             id='email'
             value={email}
             placeholder='Email Address'
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
           />
         </fieldset>
-        <button className='btn'>Get Started ➤</button>
+        <button
+          onClick={(): void => navigate('/signup/registration')}
+          className='btn'>
+          Get Started ➤
+        </button>
       </form>
     </>
   )
@@ -104,9 +110,9 @@ const Home = () => {
 
   const fourthContent = (
     <div className='homeWrapper h-auto flex flex-col gap-5 bg-[#b38f00]'>
-      <caption className='text-4xl font-extrabold'>
+      <p className='text-4xl font-extrabold text-center'>
         Frequently Asked Questions
-      </caption>
+      </p>
       {data.map((item) => {
         return <Question key={item.id} {...item} />
       })}
