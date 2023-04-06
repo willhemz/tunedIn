@@ -10,3 +10,8 @@ export const data: Data = [
   { id: 1, name: 'emailOrPhone', value: 'Email or phone number' },
   { id: 2, name: 'password', value: 'Password' },
 ]
+
+
+export const obj = [
+  
+]
