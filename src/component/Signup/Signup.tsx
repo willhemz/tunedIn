@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import {
+  CreditOption,
   PaymentPicker,
   Planform,
   RegForm,
@@ -18,9 +19,14 @@ const Signup = () => {
   if (name === 'signup') footerContent = <RegSignUp />;
   if (name === 'planform') footerContent = <Planform />;
   if (name === 'paymentPicker') footerContent = <PaymentPicker />;
+  if (name === 'creditOption') footerContent = <CreditOption />;
 
   const content = (
-    <div className={`homeWrapper ${name === 'planform' && 'h-auto'}`}>
+    <div
+      className={`homeWrapper ${
+        name === 'planform' || (name === 'creditOption' && 'h-auto')
+      }`}
+    >
       <div className="homeBg--fader bg-opacity-10"></div>
       <header className="homeHeader">
         <button

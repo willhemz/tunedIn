@@ -122,3 +122,47 @@ export const paymentImages: ReactNode = (
     />
   </div>
 );
+
+export interface DataType {
+  id?: string;
+  name: string;
+  value: string;
+  errorMessage: string;
+}
+
+export type Data = DataType[];
+
+export const user: Data = [
+  {
+    id: 'firstName',
+    name: 'firstName',
+    value: 'First name',
+    errorMessage: 'Please enter a first name.',
+  },
+  {
+    id: 'lastName',
+    name: 'lastName',
+    value: 'Last name',
+    errorMessage: 'Please enter a last name.',
+  },
+  {
+    id: 'cardNumber',
+    name: 'cardNumber',
+    value: 'Card number',
+    errorMessage: 'Please enter a card number.',
+  },
+  {
+    id: 'expirationDate',
+    name: 'expirationDate',
+    value: 'Expiration date (MM/YY)',
+    errorMessage: 'Please enter an expiration date.',
+  },
+  {
+    id: 'securityCode',
+    name: 'securityCode',
+    value: 'Security code (CVV)',
+    errorMessage: 'Please enter a security code (CVV)',
+  },
+];
+
+export const obj = [];
