@@ -105,3 +105,20 @@ export const data: ItemProps = {
   deviceQty,
   triangle,
 };
+
+export const paymentImages: ReactNode = (
+  <div className="flex gap-1">
+    <img
+      src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/VISA.png"
+      alt="visa"
+    />
+    <img
+      src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/MASTERCARD.png"
+      alt="mastercard"
+    />
+    <img
+      src="https://assets.nflxext.com/siteui/acquisition/payment/ffe/paymentpicker/VERVE.png"
+      alt="verve"
+    />
+  </div>
+);

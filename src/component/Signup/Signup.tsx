@@ -1,5 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { Planform, RegForm, Registration, RegSignUp } from '../../component';
+import {
+  PaymentPicker,
+  Planform,
+  RegForm,
+  Registration,
+  RegSignUp,
+} from '../../component';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -11,6 +17,7 @@ const Signup = () => {
   if (name === 'regform') footerContent = <RegForm />;
   if (name === 'signup') footerContent = <RegSignUp />;
   if (name === 'planform') footerContent = <Planform />;
+  if (name === 'paymentPicker') footerContent = <PaymentPicker />;
 
   const content = (
     <div className={`homeWrapper ${name === 'planform' && 'h-auto'}`}>

@@ -1,8 +1,9 @@
-export { default as ErrorPage } from './Errorpage'
-export { default as Home } from './Home/Home'
-export { default as Login } from './Login/Login'
-export { default as Signup } from './Signup/Signup'
-export { default as Registration } from './Signup/Registration'
-export { default as RegForm } from './Signup/RegForm'
-export { default as RegSignUp } from './Signup/RegSignUp'
-export { default as Planform } from './Signup/Planform'
+export { default as ErrorPage } from './Errorpage';
+export { default as Home } from './Home/Home';
+export { default as Login } from './Login/Login';
+export { default as Signup } from './Signup/Signup';
+export { default as Registration } from './Signup/Registration';
+export { default as RegForm } from './Signup/RegForm';
+export { default as RegSignUp } from './Signup/RegSignUp';
+export { default as Planform } from './Signup/Planform';
+export { default as PaymentPicker } from './Signup/PaymentPicker';
