@@ -4,6 +4,7 @@ import { Devices, Icon, data } from './data';
 
 const Planform = (): ReactElement => {
   const [selectId, setSelectId] = useState<number>(1);
+
   const navigate = useNavigate();
   const {
     identifier,
@@ -37,20 +38,20 @@ const Planform = (): ReactElement => {
           </p>
         </div>
       </header>
-      <footer className="mt-4">
+      <footer className="mt-4 w-full">
         <section className="w-full">
-          <table className="w-full border-separate border-spacing-8">
+          <table className="w-full border-separate border-spacing-8 ">
             <thead>
               <tr>
                 {identifier.map((item, index) => (
                   <th
-                    onClick={() => setSelectId(index)}
+                    onClick={() => index !== 0 && setSelectId(index)}
                     className={`${
                       index !== 0 &&
                       'w-[17%] h-20 bg-[#b38f00] relative cursor-pointer'
                     } ${
                       index === selectId ? 'bg-opacity-100' : 'bg-opacity-50'
-                    }`}
+                    } `}
                     key={index}
                   >
                     {item}

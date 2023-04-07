@@ -7,6 +7,7 @@ import {
   Registration,
   RegSignUp,
 } from '../../component';
+import { useState } from 'react';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Signup = () => {
   const content = (
     <div
       className={`homeWrapper ${
-        name === 'planform' || (name === 'creditOption' && 'h-auto')
+        (name === 'planform' || name === 'creditOption') && 'h-auto'
       }`}
     >
       <div className="homeBg--fader bg-opacity-10"></div>
