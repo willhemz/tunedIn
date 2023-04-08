@@ -1,4 +1,5 @@
-const base = import.meta.env.VITE_API_KEY as string;
+// const base = import.meta.env.VITE_API_KEY as string;
+const base = 'ad88c1f7093b3200f5896bb7d57c1578';
 const year = new Date().getFullYear().toString() as string;
 
 export interface RequestType {
