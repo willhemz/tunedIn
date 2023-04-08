@@ -39,16 +39,7 @@ const MovieRow = ({
                   }`}
                   alt={movie.name as string}
                 />
-                {/* <MovieCard
-              className="w-full xs:w-3/5 lg:w-1/3 flex flex-col gap-2"
-              title={
-                (movie?.title as string) ||
-                (movie?.name as string) ||
-                (movie?.original_name as string)
-              }
-              description={movie?.overview as string}
-              variable={150}
-            /> */}
+
                 <div className="absolute bottom-0 left-0 w-full h-20 bg-fader z-10"></div>
               </article>
             )
