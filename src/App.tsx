@@ -1,5 +1,5 @@
-import { createBrowserRouter as browse } from 'react-router-dom'
-import { ErrorPage, Home, Login, Signup } from './component'
+import { createBrowserRouter as browse } from 'react-router-dom';
+import { ErrorPage, Home, Login, Signup } from './component';
 
 const App = browse([
   {
@@ -16,6 +16,6 @@ const App = browse([
     path: '/signup/:name',
     element: <Signup />,
   },
-])
+]);
 
-export default App
+export default App;

@@ -1,7 +1,7 @@
-const base = process.env.API_KEY as string;
+const base = import.meta.env.VITE_API_KEY as string;
 const year = new Date().getFullYear().toString() as string;
 
-interface RequestType {
+export interface RequestType {
   [index: string]: string;
 }
 
@@ -18,4 +18,4 @@ const requests: RequestType = {
   fetchDrama: `/moviee/drama?api_key=${base}&with_genres=18`,
 };
 
-export default { ...requests };
+export default requests;
