@@ -2,6 +2,8 @@ import { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TfiThemifyFaviconAlt } from 'react-icons/tfi';
 import Banner from './Banner';
+import MovieRow from '../../molecule/MovieRow';
+import requests from '../../constants/endpoints';
 
 const UserHome = (): ReactElement => {
   const navigate = useNavigate();
@@ -37,10 +39,30 @@ const UserHome = (): ReactElement => {
   );
 
   const content: ReactElement = (
-    <div className="bg-black h-[2000px]">
+    <div className="bg-black">
       {NavMenu}
       <main>
         <Banner />
+        <MovieRow
+          title="TUNEDIN ORIGINALS"
+          fetchUrl={requests.fetchTunedInOriginals}
+          isLargeRow={true}
+        />
+        <MovieRow title="Trending Now" fetchUrl={requests.fetchTrending} />
+        <MovieRow title="Top Rated" fetchUrl={requests.fetchTopRated} />
+        <MovieRow title="Now Playing" fetchUrl={requests.fetchNowPlaying} />
+        <MovieRow title="Action Movies" fetchUrl={requests.fetchActionMovies} />
+        <MovieRow title="Comedy Movies" fetchUrl={requests.fetchComedyMovies} />
+        <MovieRow title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} />
+        <MovieRow
+          title="Romance Movies"
+          fetchUrl={requests.fetchRomanceMovies}
+        />
+        <MovieRow title="Drama" fetchUrl={requests.fetchDrama} />
+        <MovieRow
+          title="Documentaries"
+          fetchUrl={requests.fetchDocumentaries}
+        />
       </main>
     </div>
   );

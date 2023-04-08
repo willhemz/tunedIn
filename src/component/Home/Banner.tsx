@@ -1,20 +1,19 @@
 import { ReactElement, useEffect, useState } from 'react';
 import MovieCard from '../../atoms/MovieCard/MovieCard';
-
 import requests from '../../constants/endpoints';
 import useFetch from '../../features/useFetch';
 
-interface Data {
+export interface Data {
   [index: string]: string | number | boolean | string[] | number[];
 }
 
 const Banner = (): ReactElement => {
   const [movie, setMovie] = useState<Data>({});
 
-  useFetch(requests.fetchTunedInOriginals, setMovie);
+  useFetch(requests.fetchTunedInOriginals, setMovie, 'single');
 
   return (
-    <section className="mt-20 p-10 h-64 sm:h-[500px] text-white relative object-contain flex items-center z-10">
+    <section className="mt-20 mb-10 p-10 h-64 sm:h-[500px] text-white relative object-contain flex items-center z-10">
       <img
         className="absolute top-0 left-0 w-full h-full -z-10"
         src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}

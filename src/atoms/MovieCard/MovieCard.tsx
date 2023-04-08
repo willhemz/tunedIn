@@ -2,8 +2,8 @@ import { ReactNode } from 'react';
 
 export interface PropsType {
   title: string;
-  description: string;
-  variable: number;
+  description?: string;
+  variable?: number;
   className?: string;
 }
 
@@ -26,7 +26,7 @@ const MovieCard = ({ title, description, variable, className }: PropsType) => {
         {btn('Play')}
         {btn('My List')}
       </div>
-      <p>{trimText(description, variable)}</p>
+      <p>{trimText(description as string, variable as number)}</p>
     </div>
   );
   return content;

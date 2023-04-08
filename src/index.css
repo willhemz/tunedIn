@@ -76,4 +76,9 @@
   .homeMail {
     @apply bg-transparent border-none w-full;
   }
+
+  /* MovieRow */
+  .movieRow::-webkit-scrollbar {
+    @apply hidden;
+  }
 }
