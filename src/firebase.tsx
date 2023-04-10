@@ -1,12 +1,12 @@
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBCo5hRU0J7fjxKrlpZmYrnT4HWXQ-0l2o',
-  authDomain: 'tunedin-cc4ee.firebaseapp.com',
-  projectId: 'tunedin-cc4ee',
-  storageBucket: 'tunedin-cc4ee.appspot.com',
-  messagingSenderId: '646275575972',
-  appId: '1:646275575972:web:0c2366ba17eb2d6c82f631',
+  apiKey: import.meta.env.VITE_API_KEY_FIREBASE as string,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN as string,
+  projectId: import.meta.env.PROJECT_ID as string,
+  storageBucket: import.meta.env.STORAGE_BUCKET as string,
+  messagingSenderId: import.meta.env.MESSAGING_SENDER_ID as string,
+  appId: import.meta.env.APP_ID as string,
 };
 
 const app = initializeApp(firebaseConfig);
