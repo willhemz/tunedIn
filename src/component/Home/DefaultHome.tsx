@@ -1,19 +1,42 @@
-import { useEffect, useState, ChangeEvent, ReactElement } from 'react';
+import {
+  useEffect,
+  useState,
+  ChangeEvent,
+  ReactElement,
+  FormEvent,
+  useRef,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { data } from './data';
 import Question from './Question';
+import { useDispatch } from 'react-redux';
+import { setMail } from '../../features/User/Userslice';
 
 const DefaultHome = (): ReactElement => {
   const [caption, setCaption] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
+  const labelRef = useRef<HTMLLabelElement>(null!);
+
   const img: string = new URL('../../assets/theater.jpg', import.meta.url).href;
   const tv: string = new URL('../../assets/tv.jpg', import.meta.url).href;
   const pc: string = new URL('../../assets/movie.jpg', import.meta.url).href;
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (email && email.includes('@')) {
+      dispatch(setMail(email));
+      navigate('/signup/registration');
+    } else if (email && !email.includes('@')) {
+      labelRef.current.textContent = 'email must include @ *';
+    } else labelRef.current.textContent = 'email field cannot be empty *';
+  };
 
   useEffect(() => {
     email ? setCaption(true) : setCaption(false);
+    if (labelRef.current.textContent) labelRef.current.textContent = '';
   }, [email]);
 
   const introToPage = (
@@ -27,7 +50,11 @@ const DefaultHome = (): ReactElement => {
           Ready to watch? Enter your email to create or restart your membership.
         </p>
       </section>
-      <form className="flex gap-3 w-full justify-center">
+      <form
+        noValidate
+        onSubmit={handleSubmit}
+        className="flex gap-3 w-full justify-center"
+      >
         <fieldset className="mailField">
           <label
             className={` ${
@@ -51,11 +78,13 @@ const DefaultHome = (): ReactElement => {
               setEmail(e.target.value)
             }
           />
+          <label
+            ref={labelRef}
+            htmlFor="email"
+            className="error absolute top-[105%] text-red-500"
+          ></label>
         </fieldset>
-        <button
-          onClick={(): void => navigate('/signup/registration')}
-          className="btn"
-        >
+        <button type="submit" className="btn">
           Get Started ➤
         </button>
       </form>

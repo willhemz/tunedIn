@@ -68,7 +68,7 @@
   }
 
   .mailField {
-    @apply bg-black bg-opacity-50 rounded-lg py-1 px-2 border border-white text-white w-3/5 h-14 grid place-items-center;
+    @apply bg-black bg-opacity-50 rounded-lg py-1 px-2 border border-white text-white w-3/5 h-14 grid place-items-center relative;
   }
   .mailField__modifier {
     @apply bg-transparent border-black text-black;
