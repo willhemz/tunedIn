@@ -6,7 +6,6 @@ const App = browse([
     path: '/',
     element: <Home />,
     errorElement: <ErrorPage />,
-    children: [],
   },
   {
     path: '/login',

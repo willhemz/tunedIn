@@ -4,20 +4,30 @@ import {
   ReactNode,
   ReactElement,
   FormEvent,
+  useEffect,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { data } from './data';
 import Input from './Input';
+import { confirmUser } from '../../features/User/FirebaseAuth';
+import { ErrorObj } from '../Signup/RegForm';
+import { loginAcct } from '../../features/User/Userslice';
+import { useAppDispatch } from '../../features';
 
 export type PropsType = {
   emailOrPhone: string;
   password: string;
 };
 const Login = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [info, setInfo] = useState<PropsType>({
     emailOrPhone: '',
     password: '',
+  });
+  const [error, setError] = useState<ErrorObj>({
+    email: false,
+    password: false,
   });
   const [checked, setChecked] = useState<boolean>(false);
 
@@ -29,14 +39,43 @@ const Login = () => {
 
   const signIn = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (info.password.length < 6) setError({ ...error, password: true });
+    else if (
+      !info.emailOrPhone ||
+      (!/^\d+$/.test(info.emailOrPhone) && !info.emailOrPhone.includes('@')) ||
+      (/^\d+$/.test(info.emailOrPhone) && info.emailOrPhone.length > 15)
+    )
+      setError({ ...error, email: true });
+    else {
+      confirmUser({
+        email: info.emailOrPhone,
+        password: info.password,
+        dispatch,
+        navigate,
+      });
+      setInfo({ emailOrPhone: '', password: '' });
+    }
   };
+
+  useEffect(() => {
+    if (
+      error.email &&
+      ((info.emailOrPhone &&
+        !/^\d+$/.test(info.emailOrPhone) &&
+        info.emailOrPhone.includes('@')) ||
+        (/^\d+$/.test(info.emailOrPhone) && info.emailOrPhone.length < 15))
+    )
+      setError({ ...error, email: false });
+    if (error.password && info.password.length >= 6)
+      setError({ ...error, password: false });
+  }, [info]);
 
   const img: string = new URL('../../assets/theater.jpg', import.meta.url).href;
 
   const signUpForm: ReactNode = (
     <form
       onSubmit={signIn}
-      className="w-1/3 h-full bg-black bg-opacity-70 p-10"
+      className="w-1/3 h-full overflow-clip bg-black bg-opacity-70 p-10"
     >
       <p aria-label="form title" className="text-3xl font-bold">
         Sign In
@@ -49,6 +88,7 @@ const Login = () => {
               {...item}
               info={info}
               handleChange={handleChange}
+              error={error}
             />
           );
         })}

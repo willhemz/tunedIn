@@ -3,15 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { data } from '../Login/data';
 import Input from '../Login/Input';
 import { PropsType } from '../Login/Login';
-import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { createUser } from '../../features/User/FirebaseAuth';
 import { setMail } from '../../features/User/Userslice';
+import { useAppDispatch, useAppSelector } from '../../features';
 
 export type ErrorObj = { email: boolean; password: boolean };
 
 const RegForm = () => {
-  const { email } = useSelector((state: RootState) => state.user);
+  const { email } = useAppSelector((state: RootState) => state.user);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [info, setInfo] = useState<PropsType>({
     emailOrPhone: email || '',
@@ -39,10 +40,14 @@ const RegForm = () => {
     )
       setError({ ...error, email: true });
     else {
-      createUser({ email: info.emailOrPhone, password: info.password });
+      createUser({
+        email: info.emailOrPhone,
+        password: info.password,
+        dispatch,
+        navigate,
+      });
       setInfo({ emailOrPhone: '', password: '' });
       setMail('');
-      navigate('/signup/signup');
     }
   };
 
