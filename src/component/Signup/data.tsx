@@ -5,6 +5,7 @@ import { AiOutlineCheck } from 'react-icons/ai';
 import { HiXMark } from 'react-icons/hi2';
 import { GoTriangleDown } from 'react-icons/go';
 import { ReactElement, ReactNode } from 'react';
+import { PlanType } from '../../features/User/Userslice';
 
 type Identifier = '' | 'Mobile' | 'Basic' | 'Standard' | 'Premium';
 
@@ -165,4 +166,33 @@ export const user: Data = [
   },
 ];
 
-export const obj = [];
+export const plans: PlanType[] = [
+  {
+    type: 'Mobile',
+    resolution: '480px',
+    price: handleCurrency(1200),
+    numberOfDevice: 1,
+    usableDevices: ['Phone', 'Tablet'],
+  },
+  {
+    type: 'Basic',
+    resolution: '720px',
+    price: handleCurrency(2900),
+    numberOfDevice: 1,
+    usableDevices: ['Phone', 'Tablet', 'Computer', 'TV'],
+  },
+  {
+    type: 'Standard',
+    resolution: '1080px',
+    price: handleCurrency(3600),
+    numberOfDevice: 2,
+    usableDevices: ['Phone', 'Tablet', 'Computer', 'TV'],
+  },
+  {
+    type: 'Premium',
+    resolution: '4K+HDR',
+    price: handleCurrency(4400),
+    numberOfDevice: 6,
+    usableDevices: ['Phone', 'Tablet', 'Computer', 'TV'],
+  },
+];

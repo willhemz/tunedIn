@@ -26,7 +26,7 @@ const Profile = (): ReactElement => {
       </button>
       <button
         className="text-white text-2xl"
-        onClick={(): void => navigate('profiles')}
+        onClick={(): void => navigate('/profiles')}
       >
         <TfiThemifyFaviconAlt />
       </button>
@@ -36,7 +36,7 @@ const Profile = (): ReactElement => {
   const avatar: ReactNode = (
     <button
       className="text-white text-7xl"
-      onClick={(): void => navigate('profiles')}
+      onClick={(): void => navigate('/profiles')}
     >
       <TfiThemifyFaviconAlt />
     </button>

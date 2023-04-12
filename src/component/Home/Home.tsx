@@ -9,10 +9,12 @@ type Component = ReturnType<typeof DefaultHome>;
 
 const Home = (): ReactElement => {
   useLoad();
-  const { loggedin, user } = useAppSelector((state: RootState) => state.user);
+  const { loggedin, user, planExist } = useAppSelector(
+    (state: RootState) => state.user
+  );
 
   let content: Component;
-  content = !loggedin && !user ? <DefaultHome /> : <UserHome />;
+  content = !loggedin || !user || !planExist ? <DefaultHome /> : <UserHome />;
   return content;
 };
 

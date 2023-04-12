@@ -2,9 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { User } from 'firebase/auth';
 
-type PlanType = {
+export type PlanType = {
   type: 'Mobile' | 'Basic' | 'Standard' | 'Premium' | '';
+  resolution: string;
   price: string;
+  numberOfDevice: number;
+  usableDevices: string[];
 };
 
 export interface InitialProps {
@@ -20,7 +23,13 @@ const initialState: InitialProps = {
   email: '',
   user: null!,
   planExist: false,
-  plan: { type: 'Mobile', price: '' },
+  plan: {
+    type: '',
+    resolution: '',
+    price: '',
+    numberOfDevice: null!,
+    usableDevices: [],
+  },
 };
 
 export const userSlice = createSlice({
@@ -38,9 +47,17 @@ export const userSlice = createSlice({
     setMail: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
     },
+    fetchPlan: (state, action: PayloadAction<PlanType>) => {
+      state.plan = action.payload;
+    },
+    checkPlan: (state) => {
+      if (state.plan.type) state.planExist = true;
+      else state.planExist = false;
+    },
   },
 });
 
-export const { loginAcct, logout, setMail } = userSlice.actions;
+export const { loginAcct, logout, setMail, fetchPlan, checkPlan } =
+  userSlice.actions;
 
 export default userSlice.reducer;
