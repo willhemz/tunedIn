@@ -1,5 +1,5 @@
 import { createBrowserRouter as browse } from 'react-router-dom';
-import { ErrorPage, Home, Login, Signup } from './component';
+import { ErrorPage, Home, Login, Profile, Signup } from './component';
 
 const App = browse([
   {
@@ -14,6 +14,10 @@ const App = browse([
   {
     path: '/signup/:name',
     element: <Signup />,
+  },
+  {
+    path: '/profiles',
+    element: <Profile />,
   },
 ]);
 
