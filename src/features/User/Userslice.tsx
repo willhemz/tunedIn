@@ -20,7 +20,7 @@ const initialState: InitialProps = {
   email: '',
   user: null!,
   planExist: false,
-  plan: { type: '', price: '' },
+  plan: { type: 'Mobile', price: '' },
 };
 
 export const userSlice = createSlice({

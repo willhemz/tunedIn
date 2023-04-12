@@ -17,7 +17,7 @@ const UserHome = (): ReactElement => {
     return () => window.removeEventListener('scroll', handlePos);
   }, []);
 
-  const NavMenu = (
+  const NavMenu: ReactNode = (
     <nav
       className={`w-full flex justify-between items-center h-20 px-10 transition-all duration-300 ease-linear fixed top-0 left-0 z-50 ${
         modifyNav ? 'bg-transparent' : 'bg-black'
@@ -31,7 +31,7 @@ const UserHome = (): ReactElement => {
       </button>
       <button
         className="text-white text-2xl"
-        onClick={(): void => navigate('login')}
+        onClick={(): void => navigate('profiles')}
       >
         <TfiThemifyFaviconAlt />
       </button>
