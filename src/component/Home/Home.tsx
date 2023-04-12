@@ -1,32 +1,33 @@
 import { ReactElement } from 'react';
 import DefaultHome from './DefaultHome';
 import UserHome from './UserHome';
-import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { useEffect } from 'react';
 import { auth } from '../../firebase';
-import { loginAcct, logout } from '../../features/User/Userslice';
 import { User } from 'firebase/auth';
+import { loginAcct, logout } from '../../features/User/Userslice';
+import { useAppDispatch, useAppSelector } from '../../features';
 
 type Component = ReturnType<typeof DefaultHome>;
 
 const Home = (): ReactElement => {
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((userCredentials) => {
-      if (userCredentials as User) {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
         // logged in
-        loginAcct();
+        dispatch(loginAcct({ uid: user.uid, email: user.email } as User));
       } else {
         // logged out
-        logout();
+        dispatch(logout());
       }
       return unsubscribe;
     });
-  }, []);
-  const { loggedin } = useSelector((state: RootState) => state.user);
+  }, [auth]);
+  const { loggedin } = useAppSelector((state: RootState) => state.user);
 
   let content: Component;
-  !loggedin ? (content = <DefaultHome />) : (content = <UserHome />);
+  content = !loggedin ? <DefaultHome /> : <UserHome />;
   return content;
 };
 
