@@ -3,12 +3,16 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { user } from './data';
 import Input from './Input';
 import { paymentImages } from './data';
+import { useAppSelector } from '../../features';
 
 export interface PropsType {
   [index: string]: string;
 }
 const CreditOption = () => {
   const navigate = useNavigate();
+  const {
+    plan: { type, price },
+  } = useAppSelector((state) => state.user);
   const [info, setInfo] = useState<PropsType>({
     firstName: '',
     lastName: '',
@@ -48,10 +52,15 @@ const CreditOption = () => {
             })}
             <div className="flex justify-between w-full bg-gray-500 bg-opacity-20 p-2">
               <div>
-                <p className="font-semibold">#1,200</p>
-                <small className="opacity-70">Mobile</small>
+                <p className="font-semibold">{price}</p>
+                <small className="opacity-70">{type}</small>
               </div>
-              <button className="text-blue-900 font-semibold">Change</button>
+              <button
+                onClick={() => navigate('/signup/planform')}
+                className="text-blue-900 font-semibold"
+              >
+                Change
+              </button>
             </div>
             <div className="flex flex-col gap-3 text-sm opacity-50">
               <small>
