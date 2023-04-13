@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { FormEvent, ReactElement, useEffect, useState } from 'react';
 import { Devices, Icon, data, plans } from './data';
-import { checkPlan, fetchPlan } from '../../features/User/Userslice';
+import { fetchPlan } from '../../features/User/Userslice';
 import { addData, useAppDispatch, useAppSelector } from '../../features';
 
 const Planform = (): ReactElement => {
@@ -12,7 +12,6 @@ const Planform = (): ReactElement => {
   useEffect(() => {
     const index: number = selectId - 1;
     dispatch(fetchPlan(plans[index]));
-    dispatch(checkPlan());
   }, [selectId]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

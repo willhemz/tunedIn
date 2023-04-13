@@ -12,7 +12,7 @@ import Input from './Input';
 import { confirmUser } from '../../features/User/FirebaseAuth';
 import { ErrorObj } from '../Signup/RegForm';
 import { loginAcct } from '../../features/User/Userslice';
-import { useAppDispatch } from '../../features';
+import { getData, useAppDispatch } from '../../features';
 
 export type PropsType = {
   emailOrPhone: string;

@@ -18,18 +18,20 @@ export interface InitialProps {
   plan: PlanType;
 }
 
+const plan: PlanType = {
+  type: '',
+  resolution: '',
+  price: '',
+  numberOfDevice: null!,
+  usableDevices: [],
+};
+
 const initialState: InitialProps = {
   loggedin: false,
   email: '',
   user: null!,
   planExist: false,
-  plan: {
-    type: '',
-    resolution: '',
-    price: '',
-    numberOfDevice: null!,
-    usableDevices: [],
-  },
+  plan,
 };
 
 export const userSlice = createSlice({
@@ -43,6 +45,8 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.user = null!;
       state.loggedin = false;
+      state.plan = plan;
+      state.planExist = false;
     },
     setMail: (state, action: PayloadAction<string>) => {
       state.email = action.payload;

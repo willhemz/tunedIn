@@ -8,4 +8,5 @@ export { default as RegSignUp } from './Signup/RegSignUp';
 export { default as Planform } from './Signup/Planform';
 export { default as PaymentPicker } from './Signup/PaymentPicker';
 export { default as CreditOption } from './Signup/CreditOption';
+export { default as PaymentConfirmation } from './Signup/PaymentConfirmation';
 export { default as Profile } from './Profile/Profile';

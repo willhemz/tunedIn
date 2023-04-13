@@ -8,6 +8,7 @@ import { auth } from '../../firebase';
 import { loginAcct } from './Userslice';
 import { DispatchFunc } from '../../store';
 import { NavigateFunction } from 'react-router-dom';
+import { getData } from './storage';
 
 interface Props {
   userAuth?: Auth;
@@ -42,6 +43,7 @@ const confirmUser = ({ email, userAuth = auth, ...rest }: Props) => {
       // Signed in
       const user: User = userCredential.user;
       dispatch(loginAcct({ uid: user.uid, email: user.email } as User));
+      getData(email, dispatch);
       console.log(user.email, 'account logged in successfully');
       navigate('/');
     })
