@@ -6,7 +6,7 @@ import { addData, useAppDispatch, useAppSelector } from '../../features';
 
 const Planform = (): ReactElement => {
   const dispatch = useAppDispatch();
-  const { email, plan } = useAppSelector((state) => state.user);
+  const { email } = useAppSelector((state) => state.user);
   const [selectId, setSelectId] = useState<number>(1);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Planform = (): ReactElement => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addData(email as string, plan, navigate);
+    addData(email as string, plans[selectId - 1], navigate);
   };
 
   const navigate = useNavigate();
