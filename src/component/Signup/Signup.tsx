@@ -7,7 +7,8 @@ import {
   Registration,
   RegSignUp,
 } from '../../component';
-import { useState } from 'react';
+
+import { auth } from '../../firebase';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const Signup = () => {
           </button>
         )}
         {name !== 'registration' && name !== 'regform' && (
-          <button onClick={(): void => navigate('/')} className="btn">
+          <button onClick={() => auth.signOut()} className="btn">
             Sign Out
           </button>
         )}

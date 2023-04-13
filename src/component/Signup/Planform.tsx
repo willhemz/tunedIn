@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import { ReactElement, useEffect, useState } from 'react';
+import { FormEvent, ReactElement, useEffect, useState } from 'react';
 import { Devices, Icon, data, plans } from './data';
 import { checkPlan, fetchPlan } from '../../features/User/Userslice';
-import { useAppDispatch } from '../../features';
+import { addData, useAppDispatch, useAppSelector } from '../../features';
 
 const Planform = (): ReactElement => {
   const dispatch = useAppDispatch();
+  const { email } = useAppSelector((state) => state.user);
   const [selectId, setSelectId] = useState<number>(1);
 
   useEffect(() => {
@@ -13,6 +14,11 @@ const Planform = (): ReactElement => {
     dispatch(fetchPlan(plans[index]));
     dispatch(checkPlan());
   }, [selectId]);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    addData(email as string, plans[selectId - 1], navigate);
+  };
 
   const navigate = useNavigate();
   const {
@@ -47,7 +53,7 @@ const Planform = (): ReactElement => {
           </p>
         </div>
       </header>
-      <footer className="mt-4 w-full">
+      <form onSubmit={handleSubmit} className="mt-4 w-full">
         <section className="w-full">
           <table className="w-full border-separate border-spacing-8 ">
             <thead>
@@ -176,14 +182,11 @@ const Planform = (): ReactElement => {
           </p>
         </section>
         <section className="text-center">
-          <button
-            onClick={(): void => navigate('/signup/paymentPicker')}
-            className="btn--variant mt-5 w-1/4"
-          >
+          <button type="submit" className="btn--variant mt-5 w-1/4">
             Next
           </button>
         </section>
-      </footer>
+      </form>
     </section>
   );
 };
