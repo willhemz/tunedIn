@@ -1,13 +1,13 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   CreditOption,
+  PaymentConfirmation,
   PaymentPicker,
   Planform,
   RegForm,
   Registration,
   RegSignUp,
 } from '../../component';
-
 import { auth } from '../../firebase';
 
 const Signup = () => {
@@ -22,6 +22,7 @@ const Signup = () => {
   if (name === 'planform') footerContent = <Planform />;
   if (name === 'paymentPicker') footerContent = <PaymentPicker />;
   if (name === 'creditOption') footerContent = <CreditOption />;
+  if (name === 'paymentConfirmation') footerContent = <PaymentConfirmation />;
 
   const content = (
     <div

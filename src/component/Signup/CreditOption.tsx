@@ -1,17 +1,19 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { user } from './data';
 import Input from './Input';
 import { paymentImages } from './data';
-import { useAppSelector } from '../../features';
+import { getData, useAppDispatch, useAppSelector } from '../../features';
 
 export interface PropsType {
   [index: string]: string;
 }
 const CreditOption = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const {
     plan: { type, price },
+    user: { email },
   } = useAppSelector((state) => state.user);
   const [info, setInfo] = useState<PropsType>({
     firstName: '',
@@ -21,12 +23,32 @@ const CreditOption = () => {
     securityCode: '',
   });
   const [checked, setChecked] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (Object.values(info).every((item) => item.length >= 1) && checked)
+      setError(false);
+  }, [info, checked]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const name: string = e.target.name;
     const value: string = e.target.value;
     setInfo({ ...info, [name]: value });
   };
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (Object.values(info).some((item) => item.length < 1)) setError(true);
+    else if (!checked) setError(true);
+    else
+      getData(
+        email as string,
+        dispatch,
+        navigate,
+        '/signup/paymentConfirmation'
+      );
+  };
+
   return (
     <section className="w-2/5 p-10">
       <footer className="text-[#b38f00] text-left mt-5">
@@ -38,7 +60,7 @@ const CreditOption = () => {
           Set up your credit or debit card
         </p>
         {paymentImages}
-        <form className="text-black">
+        <form noValidate onSubmit={onSubmit} className="text-black">
           <section className="grid gap-5 my-10">
             {user.map((item) => {
               return (
@@ -46,6 +68,7 @@ const CreditOption = () => {
                   key={item.id}
                   {...item}
                   info={info}
+                  error={error}
                   handleChange={handleChange}
                 />
               );
@@ -89,14 +112,16 @@ const CreditOption = () => {
               <span
                 className={`border cursor-pointer border-black w-6 h-6 rounded-md grid place-content-center ${
                   checked && 'bg-black border-none text-white'
-                }`}
+                } ${error && 'border-red-700'}`}
               >
                 {checked && '✓'}
               </span>
-              <small>I agree</small>
+              <small className={`${error && 'border-b border-red-700'}`}>
+                I agree
+              </small>
             </div>
           </section>
-          <button onClick={() => navigate('/')} className="btn--variant">
+          <button type="submit" className="btn--variant">
             Start Membership
           </button>
         </form>
